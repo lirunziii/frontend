@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>点</title>
+</head>
+<body>
+    <button onclick="getRandId()">点我添加随机id</button>
+    <button onclick="dropId()">点我删除所有id</button>
+    <p id="result"></p>
+    <script>
+        function getRandId(){
+            fetch('https://backend-production-24ec.up.railway.app/user',{
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                document.getElementById('result').innerText = '随机id: ' + data.newId;
+            })
+            .catch(err=>{
+                console.error('请求出错',err);
+            })
+        }
+        function dropId(){
+            fetch('https://backend-production-24ec.up.railway.app/user',{
+                method:'DELETE',
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                document.getElementById('result').innerText = '已删除所有id';
+            })
+            .catch(err=>{
+                console.error('请求出错',err);
+            })
+        }
+    </script>
+</body>
+</html>
