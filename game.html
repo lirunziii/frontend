@@ -4,12 +4,27 @@
   <meta charset="UTF-8">
   <title>Game</title>
 <style>
-  body {
+body {
     margin: 0;
-    background: #4b2b8d;
-    font-family: Arial;
-    color: white;
-  }
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(0, 0, 0); /* 背景图两侧空白可换颜色 */
+}
+
+/* 等比例容器，让内容永远跟背景图同一块区域 */
+.bg-container {
+    aspect-ratio: 9 / 16;   /* 背景图真实比例（非常关键） */
+    width: 100%;            /* 自适应大小 */
+    max-width: 450px;       /* 最大宽度（电脑不会太大） */
+
+    background: url("sc/backg.png") no-repeat center center;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;     /* 允许内部绝对定位 */
+}
 
   .topbar {
     display:flex;
@@ -30,18 +45,19 @@
     font-size:20px;
   }
 
-  .big-button {
-    width: 40%;
-    padding:20px;
-    border-radius:40px;
-    background:white;
-    color:#5a2ca0;
-    font-size:26px;
-    margin:50px auto;
-    display:block;
-    border:none;
-    cursor:pointer;
-  }
+.btn {
+    display: block;      /* 让按钮是块级元素 */
+    margin: 40px auto 0 auto; /* 上边距40px，左右自动居中 */
+    width: 335px;
+    height: 60px;
+    background: white;
+    color: black;
+    font-size: 16px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-family:"Acme", Arial, sans-serif ;
+}
   .pic{
   display: block;
   margin: 0 auto;
@@ -56,19 +72,19 @@
 </style>
 </head>
 <body>
-
+    <div class="bg-container">
   <!-- 顶部栏 -->
   <div class="topbar">
-    <img src="tx.jpg"  width="50"  class="circle">
+    <img src="sc/Avatar.png"  width="50"  class="circle">
     <div class="circle"> <span id="todayCount">0</span></div>
     <div class="circle"><span id="totalCount">0</span></div>
   </div>
 
   <!-- 点击按钮，直接用 onclick -->
-   <img src="pic.jpg" class="pic" width="40%" style="cursor: pointer;border-radius: 10px;"  onclick="clickButton()">
-  <button class="big-button" onclick="clickButton()">Tap</button>
+   <img src="sc/Mask group.png" class="pic" width="40%" style="cursor: pointer;border-radius: 10px;"  onclick="clickButton()">
+  <button class="btn" onclick="clickButton()">Tap</button>
   <div class ="logout" onclick="logOut()">Log out</div>
-
+</div>
   <script>
     // 获取登录后的 userid
     const userid = localStorage.getItem("userid");
@@ -123,6 +139,7 @@
 
     // 页面加载初始化
     updateCounts();
+    
   </script>
 
 </body>

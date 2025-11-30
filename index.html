@@ -1,46 +1,94 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <title>Get Start</title>
-    <style>
-        body{
-        margin: 0;
-        padding: 0;
-        height: 100vh; /* 占满整个视口高度 */
-        background: linear-gradient(180deg, #9375c1, #3a1485);
-        background-repeat: no-repeat; /* 防止重复 */
-        background-size: cover; /* 拉伸覆盖整个区域 */
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        }
-        .container {
-            padding: 40px;
-        }
-        h1 {
-            margin-top: 260px;
-            font-size: 32px;
-            font-weight: bold;
-        }
-        p {
-            opacity: 0.8;
-        }
-        .btn {
-            margin-top: 80px;
-            background: white;
-            color: #000000;
-            padding: 14px 40px;
-            font-size: 20px;
-            border-radius: 40px;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8" />
+<title>Get Start</title>
+
+<style>
+/* 整个页面全屏居中 */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(0, 0, 0); /* 背景图两侧空白可换颜色 */
+}
+
+/* 等比例容器，让内容永远跟背景图同一块区域 */
+.bg-container {
+    aspect-ratio: 9 / 16;   /* 背景图真实比例（非常关键） */
+    width: 100%;            /* 自适应大小 */
+    max-width: 450px;       /* 最大宽度（电脑不会太大） */
+
+    background: url("sc/backg.png") no-repeat center center;
+    background-size: contain;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;     /* 允许内部绝对定位 */
+}
+
+/* 内容放在背景图对应位置（百分比定位永远不跑偏） */
+.content {
+    position: absolute;
+    left: 10%;      /* 相对背景图左边 10% */
+    top: 55%;       /* 相对背景图顶部 55% */
+
+    color: white;
+    text-align: left;
+    width: 80%;     /* 内容在背景图中占的宽度 */
+}
+.inner {
+    margin: 0 auto;       /* 水平居中 */
+    width: 335px;         /* 给定宽度，必须有，否则 auto 不起作用 */
+    background: rgba(240, 240, 240, 0);   /* 看效果用 */
+    text-align: center;
+}
+
+h1 {
+    margin-top: 25%;
+    margin-left: 20px;
+    font-size: 32px; /* 自动适配大小 */
+    font-family:"ADLaM Display", Arial, sans-serif ;
+}
+
+p {
+    margin-top: 20px;
+    margin-left: 20px;
+    opacity: 0.9;
+    font-size: 16px;
+    font-family:"ABeeZee", Arial, sans-serif ;
+}
+
+.btn {
+    margin-top: 40px;
+    background: white;
+    color: black;
+    padding: 18px 30px;
+    width: 335px;
+    height: 60px;
+    font-size: 16px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-family:"Acme", Arial, sans-serif ;
+}
+</style>
+
 </head>
+
 <body>
-    <h1>Welcome to practice mode</h1>
-    <p>tap to score high and win  rewards!</p>
-    <button class ='btn' onclick="location.href='login.html'">GET STARTED</button>
+
+    <div class="bg-container">
+        <div class="content">
+            <h1>Welcome to Practice<br>Mode!</h1>
+            <p>Tap to Score High and Win Rewards!</p>
+            <div  class="inner">
+<button class="btn" onclick="location.href='login.html'">GET STARTED</button>
+            </div>
+            
+        </div>
+    </div>
+
 </body>
 </html>
