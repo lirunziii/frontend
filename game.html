@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Game</title>
+<style>
+  body {
+    margin: 0;
+    background: #4b2b8d;
+    font-family: Arial;
+    color: white;
+  }
+
+  .topbar {
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
+    background:white;
+    border-radius:50%;
+    color:#5a2ca0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:20px;
+  }
+
+  .big-button {
+    width: 40%;
+    padding:20px;
+    border-radius:40px;
+    background:white;
+    color:#5a2ca0;
+    font-size:26px;
+    margin:50px auto;
+    display:block;
+    border:none;
+    cursor:pointer;
+  }
+  .pic{
+  display: block;
+  margin: 0 auto;
+  }
+  .logout {
+    color: white;
+    text-align:center;
+    margin-top:40px;
+    opacity:0.8;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+  <!-- 顶部栏 -->
+  <div class="topbar">
+    <img src="tx.jpg"  width="50"  class="circle">
+    <div class="circle"> <span id="todayCount">0</span></div>
+    <div class="circle"><span id="totalCount">0</span></div>
+  </div>
+
+  <!-- 点击按钮，直接用 onclick -->
+   <img src="pic.jpg" class="pic" width="40%" style="cursor: pointer;border-radius: 10px;"  onclick="clickButton()">
+  <button class="big-button" onclick="clickButton()">Tap</button>
+  <div class ="logout" onclick="logOut()">Log out</div>
+
+  <script>
+    // 获取登录后的 userid
+    const userid = localStorage.getItem("userid");
+    if (!userid) {
+      alert("请先登录");
+      window.location.href = "login.html";
+    }
+
+    // 更新计数
+    async function updateCounts() {
+      try {
+        const res = await fetch(`https://backend-production-24ec.up.railway.app/clicks/counts/${userid}`, { method: 'GET' });
+        const data = await res.json();
+        document.getElementById("todayCount").textContent = data.todayCount;
+        document.getElementById("totalCount").textContent = data.totalCount;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // 点击按钮处理函数
+    async function clickButton() {
+      try {
+        const response = await fetch(`https://backend-production-24ec.up.railway.app/clicks/click/${userid}`, { method: 'POST' });
+        const result = await response.json();
+
+        if (result.success) {
+
+        } else {
+          alert(result.message);
+        }
+        updateCounts();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    async function logOut() {
+        try {
+        const response = await fetch(`https://backend-production-24ec.up.railway.app/logout`, { method: 'POST'});
+        const result = await response.json();
+
+        if (result.success) {
+          localStorage.removeItem("userid");
+          window.location.href = "login.html";
+        } else {
+          alert(result.message);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // 页面加载初始化
+    updateCounts();
+  </script>
+
+</body>
+</html>

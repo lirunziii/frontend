@@ -2,43 +2,45 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>点</title>
+    <title>Get Start</title>
+    <style>
+        body{
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* 占满整个视口高度 */
+        background: linear-gradient(180deg, #9375c1, #3a1485);
+        background-repeat: no-repeat; /* 防止重复 */
+        background-size: cover; /* 拉伸覆盖整个区域 */
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        }
+        .container {
+            padding: 40px;
+        }
+        h1 {
+            margin-top: 260px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        p {
+            opacity: 0.8;
+        }
+        .btn {
+            margin-top: 80px;
+            background: white;
+            color: #000000;
+            padding: 14px 40px;
+            font-size: 20px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="getRandId()">点我添加随机id</button>
-    <button onclick="dropId()">点我删除所有id</button>
-    <p id="result"></p>
-    <script>
-        function getRandId(){
-            fetch('https://backend-production-24ec.up.railway.app/user',{
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                document.getElementById('result').innerText = '随机id: ' + data.newId;
-            })
-            .catch(err=>{
-                console.error('请求出错',err);
-            })
-        }
-        function dropId(){
-            fetch('https://backend-production-24ec.up.railway.app/user',{
-                method:'DELETE',
-                headers:{
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                document.getElementById('result').innerText = '已删除所有id';
-            })
-            .catch(err=>{
-                console.error('请求出错',err);
-            })
-        }
-    </script>
+    <h1>Welcome to practice mode</h1>
+    <p>tap to score high and win  rewards!</p>
+    <button class ='btn' onclick="location.href='login.html'">GET STARTED</button>
 </body>
 </html>
