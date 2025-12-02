@@ -3,35 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Get Started</title>
-<link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=ABeeZee&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
 <style>
-/* ---------- 页面基础 ---------- */
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    overflow: hidden; /* 防止滚动 */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black; /* 背景两侧填充黑色 */
+    background-color: black;
     font-family: Arial, sans-serif;
 }
 
-/* ---------- 背景容器 ---------- */
+/* 背景容器 */
 .bg-container {
     width: 100%;
     max-width: 450px;
     height: 100%;
     background: url("sc/backg.png") no-repeat center center;
-    background-size: contain; /* 保证整张图显示 */
+    background-size: contain;
     position: relative;
 }
 
-/* ---------- 内容 ---------- */
+/* 主内容 */
 .content {
     position: absolute;
-    left: 10vh;
+    left: 10%;
     top: 55%;
     color: white;
     text-align: left;
@@ -40,31 +39,29 @@ body {
 
 .inner {
     margin: 0 auto;
-    width: 335px;
-    text-align: left;
+    width: 100%;
+    max-width: 335px;
+    text-align: center;
 }
 
 h1 {
     margin-top: 22%;
-    margin-left: 0vh;
     font-size: 32px;
     font-family:"ADLaM Display", Arial, sans-serif;
 }
 
 p {
-    margin-top: 0;
-    margin-left: 2%;
+    margin-top: 10px;
     opacity: 0.9;
     font-size: 16px;
     font-family:"ABeeZee", Arial, sans-serif;
 }
 
 .btn {
-    margin-top: 35x;
+    margin-top: 35px;
     background: white;
     color: black;
-    padding: 18px 30px;
-    width: 41vh;
+    width: 100%;
     height: 60px;
     font-size: 16px;
     border-radius: 100px;
@@ -73,33 +70,31 @@ p {
     font-family:"Acme", Arial, sans-serif;
 }
 
-/* ---------- 弹窗 ---------- */
+/* 弹窗 */
 .popup {
     position: fixed;
     left: 50%;
-    bottom: -100%; /* 初始隐藏 */
+    bottom: -100%;
     transform: translateX(-50%);
-    width: 100%;
+    width: 90%;
     max-width: 324px;
-    height: 60%;
+    height: 50%;
     background: white;
     border-radius: 20px 20px 0 0;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 -10px 25px rgba(0,0,0,0.35);
     transition: bottom 0.35s ease-out;
     box-sizing: border-box;
     z-index: 10;
 }
 
-/* 弹窗显示 */
 .popup.show {
     bottom: 0;
 }
 
-/* 标题 */
 .popup h2 {
-    margin: 0 0 20px 0;
-    font-size: 32px;
+    margin: 0 0 15px 0;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.3;
     font-family: "Inter", Arial, sans-serif;
@@ -108,33 +103,27 @@ p {
 /* 输入框和按钮统一宽度 */
 .popup input,
 .popup .btn {
-    width: 100%;               /* 占满父容器宽度 */
-    max-width: 100%;           /* 限制最大宽度 */
-    box-sizing: border-box;    /* 包括 padding 和 border */
+    width: 100%;
+    box-sizing: border-box;
     display: block;
     border-radius: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
 }
 
-/* 输入框样式 */
 .popup input {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 12px;
-    
 }
 
-/* 按钮样式 */
 .popup .btn {
     background: #57417F;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    margin-top: 30px;
-    cursor: pointer;
-    padding: 10px;
-    margin-top: 20%;
+    margin-top: 20px;
     height: 48px;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -150,9 +139,9 @@ p {
     </div>
 </div>
 
-<!-- 弹出的登录框 -->
+<!-- 弹窗 -->
 <div class="popup" id="loginPopup">
-    <h2 class="h2">Log in to your account</h2>
+    <h2>Log in to your account</h2>
     <input id="userid" placeholder="User ID">
     <input id="pwd" type="password" placeholder="Password">
     <button class="btn" onclick="login()">Log In</button>
@@ -164,20 +153,18 @@ const btn = document.getElementById("openLogin");
 
 // 打开弹窗
 btn.addEventListener("click", function(e) {
-    e.stopPropagation(); // 阻止事件冒泡
+    e.stopPropagation();
     popup.classList.add("show");
 });
 
-// 点击空白区域关闭弹窗
+// 点击空白关闭弹窗
 document.addEventListener("click", function(e) {
-    if(popup.classList.contains("show") && 
-       !popup.contains(e.target) && 
-       e.target !== btn) {
+    if(popup.classList.contains("show") && !popup.contains(e.target) && e.target !== btn) {
         popup.classList.remove("show");
     }
 });
 
-// 阻止点击弹窗内部关闭
+// 阻止弹窗点击冒泡
 popup.addEventListener("click", function(e){
     e.stopPropagation();
 });
