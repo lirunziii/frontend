@@ -1,94 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<title>Get Start</title>
-
+<meta charset="UTF-8">
+<title>Get Started</title>
+<link href="https://fonts.googleapis.com/css2?family=ABeeZee&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
 <style>
-/* 整个页面全屏居中 */
+/* ---------- 页面基础 ---------- */
 body {
     margin: 0;
+    padding: 0;
     height: 100vh;
+    overflow: hidden; /* 防止滚动 */
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background-color: rgb(0, 0, 0); /* 背景图两侧空白可换颜色 */
+    background-color: black; /* 背景两侧填充黑色 */
+    font-family: Arial, sans-serif;
 }
 
-/* 等比例容器，让内容永远跟背景图同一块区域 */
+/* ---------- 背景容器 ---------- */
 .bg-container {
-    aspect-ratio: 9 / 16;   /* 背景图真实比例（非常关键） */
-    width: 100%;            /* 自适应大小 */
-    max-width: 450px;       /* 最大宽度（电脑不会太大） */
-
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
     background: url("sc/backg.png") no-repeat center center;
-    background-size: contain;
-    background-color: rgba(0, 0, 0, 0);
-    position: relative;     /* 允许内部绝对定位 */
+    background-size: contain; /* 保证整张图显示 */
+    position: relative;
 }
 
-/* 内容放在背景图对应位置（百分比定位永远不跑偏） */
+/* ---------- 内容 ---------- */
 .content {
     position: absolute;
-    left: 10%;      /* 相对背景图左边 10% */
-    top: 55%;       /* 相对背景图顶部 55% */
-
+    left: 10vh;
+    top: 55%;
     color: white;
     text-align: left;
-    width: 80%;     /* 内容在背景图中占的宽度 */
+    width: 80%;
 }
+
 .inner {
-    margin: 0 auto;       /* 水平居中 */
-    width: 335px;         /* 给定宽度，必须有，否则 auto 不起作用 */
-    background: rgba(240, 240, 240, 0);   /* 看效果用 */
-    text-align: center;
+    margin: 0 auto;
+    width: 335px;
+    text-align: left;
 }
 
 h1 {
-    margin-top: 25%;
-    margin-left: 20px;
-    font-size: 32px; /* 自动适配大小 */
-    font-family:"ADLaM Display", Arial, sans-serif ;
+    margin-top: 22%;
+    margin-left: 0vh;
+    font-size: 32px;
+    font-family:"ADLaM Display", Arial, sans-serif;
 }
 
 p {
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: 0;
+    margin-left: 2%;
     opacity: 0.9;
     font-size: 16px;
-    font-family:"ABeeZee", Arial, sans-serif ;
+    font-family:"ABeeZee", Arial, sans-serif;
 }
 
 .btn {
-    margin-top: 40px;
+    margin-top: 35x;
     background: white;
     color: black;
     padding: 18px 30px;
-    width: 335px;
+    width: 41vh;
     height: 60px;
     font-size: 16px;
     border-radius: 100px;
     border: none;
     cursor: pointer;
-    font-family:"Acme", Arial, sans-serif ;
+    font-family:"Acme", Arial, sans-serif;
+}
+
+/* ---------- 弹窗 ---------- */
+.popup {
+    position: fixed;
+    left: 50%;
+    bottom: -100%; /* 初始隐藏 */
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 324px;
+    height: 60%;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 30px;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.35);
+    transition: bottom 0.35s ease-out;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+/* 弹窗显示 */
+.popup.show {
+    bottom: 0;
+}
+
+/* 标题 */
+.popup h2 {
+    margin: 0 0 20px 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.3;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+/* 输入框和按钮统一宽度 */
+.popup input,
+.popup .btn {
+    width: 100%;               /* 占满父容器宽度 */
+    max-width: 100%;           /* 限制最大宽度 */
+    box-sizing: border-box;    /* 包括 padding 和 border */
+    display: block;
+    border-radius: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+/* 输入框样式 */
+.popup input {
+    margin-top: 20px;
+    padding: 12px;
+    
+}
+
+/* 按钮样式 */
+.popup .btn {
+    background: #57417F;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 20%;
+    height: 48px;
 }
 </style>
-
 </head>
-
 <body>
 
-    <div class="bg-container">
-        <div class="content">
-            <h1>Welcome to Practice<br>Mode!</h1>
-            <p>Tap to Score High and Win Rewards!</p>
-            <div  class="inner">
-<button class="btn" onclick="location.href='login.html'">GET STARTED</button>
-            </div>
-            
+<div class="bg-container">
+    <div class="content">
+        <h1>Welcome to Practice<br>Mode!</h1>
+        <p>Tap to Score High and Win Rewards!</p>
+        <div class="inner">
+            <button class="btn" id="openLogin">GET STARTED</button>
         </div>
     </div>
+</div>
+
+<!-- 弹出的登录框 -->
+<div class="popup" id="loginPopup">
+    <h2 class="h2">Log in to your account</h2>
+    <input id="userid" placeholder="User ID">
+    <input id="pwd" type="password" placeholder="Password">
+    <button class="btn" onclick="login()">Log In</button>
+</div>
+
+<script>
+const popup = document.getElementById("loginPopup");
+const btn = document.getElementById("openLogin");
+
+// 打开弹窗
+btn.addEventListener("click", function(e) {
+    e.stopPropagation(); // 阻止事件冒泡
+    popup.classList.add("show");
+});
+
+// 点击空白区域关闭弹窗
+document.addEventListener("click", function(e) {
+    if(popup.classList.contains("show") && 
+       !popup.contains(e.target) && 
+       e.target !== btn) {
+        popup.classList.remove("show");
+    }
+});
+
+// 阻止点击弹窗内部关闭
+popup.addEventListener("click", function(e){
+    e.stopPropagation();
+});
+
+// 登录逻辑
+async function login() {
+    const userid = document.getElementById("userid").value;
+    const userpwd = document.getElementById("pwd").value;
+
+    try {
+        const res = await fetch("https://backend-production-24ec.up.railway.app/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userid, userpwd })
+        });
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem("userid", userid);
+            location.href = "game.html";
+        } else {
+            alert(data.message);
+        }
+    } catch (err) {
+        alert("网络错误，请稍后重试");
+    }
+}
+</script>
 
 </body>
 </html>
