@@ -1,21 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> <!-- 设置网页编码为 UTF-8，支持中文 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 手机适配 -->
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=ABeeZee&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
     <style>
-        body{
-            background-color: black;
-            background-image: url(./sc/backg.png);
-            background-repeat: no-repeat;
-            background-size: auto 100%;
-            height: 100vh;
-            background-position: center center;
+        body {
+            margin: 0; /* 去掉默认白边 */
+            background: black; /* 让背景图左右出现空白时显示黑色 */
+            display: flex; /* 使用 flex 布局，让内容在屏幕中间 */
+            justify-content: center; /* 水平居中 wrapper 容器 */
+            align-items: center; /* 垂直居中 wrapper 容器 */
+            height: 100vh; /* body 高度等于视口高度 */
+        }
+
+        /* 外层容器。大小完全由图片自动决定 */
+        .wrapper {
+            position: relative; /* 让内部 content 可以 absolute 叠在图片上 */
+        }
+
+        /* 背景图：用 img 代替 CSS 背景，目的是让图片大小可测可跟随 */
+        .bg {
+            height: 100vh; /* 图片高度铺满屏幕高度 */
+            width: auto;   /* 宽度自适应等比例缩放 */
+            display: block; /* 去除图片默认的底部小空隙 */
+        }
+
+        /* 内容容器，覆盖在图片上面 */
+        .content {
+            position: absolute; /* 绝对定位，叠在图片上 */
+            inset: 0; /* 上下左右全部贴齐 wrapper，也就是覆盖整张图片 */
+            text-align: left;/* 内容左对齐 */
+            display: flex;
+            flex-direction: column;  /* 让文字和按钮垂直排列 */
+            align-items: center;     /* 让文字块 + 按钮居中 */
+        }
+
+        h1 {
+            margin-top: 65vh;
+            color: white;
+            font-size: 32px;
+            line-height: 119%;
+            font-weight: 400;
+            font-family:"ADLaM Display", Arial, sans-serif;
+        }
+        p {
+            margin-top: 0vh;
+            margin-left: -5vh;
+            color: white;
+            font-size: 16px;
+            font-family:"ABeeZee", Arial, sans-serif;
+        }
+        .btn {
+            margin-top: 4vh;
+            background: white;
+            color: black;
+            width: 90%;
+            height: 60px;
+            font-size: 16px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            font-family:"Acme", Arial, sans-serif;
         }
     </style>
 </head>
+
 <body>
-    
+    <!-- 整个背景图 & 内容的容器 -->
+    <div class="wrapper">
+
+        <!-- 背景图片（可自动缩放） -->
+        <img src="./sc/backg.png" class="bg" />   
+
+        <!-- 放文字 / 按钮 / 图标的区域 -->
+        <div class="content">
+            <h1>Welcome to Practice<br>Mode!</h1>
+            <p>Tap to Score High and Win Rewards!</p>
+            <button class="btn" id="openLogin">GET STARTED</button>
+        </div>
+    </div>
 </body>
 </html>
