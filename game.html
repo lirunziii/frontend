@@ -1,97 +1,190 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>Game</title>
+<meta charset="UTF-8"> <!-- 设置网页编码为 UTF-8 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 手机适配 -->
+<title>GAME</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter&family=Aclonica&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
 <style>
 /* ---------- 页面基础 ---------- */
-body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden; /* 防止滚动 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black; /* 背景两侧填充黑色 */
-    font-family: Arial, sans-serif;
-}
+    body {
+        margin: 0; 
+        background: black; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+    }
 
-/* ---------- 背景容器 ---------- */
-.bg-container {
-    width: 100%;
-    max-width: 375px;
-    height: 100%;
-    background: url("sc/backg.png") no-repeat center center;
-    background-size: contain; /* 保证整张图显示 */
-    position: relative;
-}
+    /* 外层容器 */
+    .wrapper {
+        position: relative; 
+    }
 
-  .topbar {
-    display:flex;
-    justify-content:space-between;
-    padding:20px;
+    /* 背景图 */
+    .bg {
+        height: 100vh; 
+        width: auto;   
+        display: block; 
+    }
+
+    /* 内容容器 */
+    .content {
+        position: absolute; 
+        inset: 0; 
+        text-align: left;
+        display: flex;
+        flex-direction: column;  
+        align-items: center;  
+        /* justify-content: center;  */
+    }
+    .top{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 38px;
+      height: 60px;
+      padding: 0 20px;
+    display: flex;                  /* 横向排列 */
+      justify-content:space-between;
+      align-items:center ;
+      /* background-color: bisque; */
+    }
+    .propic{
+      width: 34px;
+      height: auto;
+      border-radius:50%;
+
+    }
+    .todayc{
+      position: absolute;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      transform: translateX(-50%);
+      border-radius:50%;
+          display: flex;              /* 启用 flex */
+    align-items: center;        /* 垂直居中 */
+    justify-content: center;    /* 水平居中 */
+    border: 3px solid #ffffff4d;
+      color: white;
+          font-size:16px;
+      font-weight: 400;
+      font-family:"Aclonica", Arial, sans-serif;
+    }
+    .totalc{
+      height: 34px;
+      width: 68px;
+      border-radius: 17px;
+      background-color: white;  
+      display: flex;  
+      justify-content: space-between;
+      align-items: center;
+    }
+    .totalc_c{
+      text-align: center;
+      font-size:12px;
+      font-weight: 400;
+      font-family:"Gilroy-Bold", Arial, sans-serif;  
+      color: #272052;
+      margin-left: 10px;
+    }
+    .totalc_p{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color:  #927AFF;
+      display: flex;                  /* 横向排列 */
+      justify-content:center;
+      align-items:center ;
+      margin-right: 2px;
+    }
+  h1 {
+      margin-top: 125px;
+      color: white;
+      font-size: 30px;
+      line-height: 39px;
+      font-weight: 400;
+      font-family:"ADLaM Display", Arial, sans-serif;
   }
-
-  .circle {
-    width: 60px;
-    height: 60px;
-    background:white;
-    border-radius:50%;
-    color:#5a2ca0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:bold;
-    font-size:20px;
-  }
-
-.btn {
-    display: block;      /* 让按钮是块级元素 */
-    margin: 40px auto 0 auto; /* 上边距40px，左右自动居中 */
-    width: 335px;
-    height: 60px;
-    background: white;
-    color: black;
-    font-size: 16px;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-    font-family:"Acme", Arial, sans-serif ;
-}
   .pic{
-  display: block;
-  margin: 0 auto;
+    width: 40vh;
+    height: auto;
+    cursor: pointer;
+    border-radius: 10px;
+      display: block;
+  /* margin: 0 auto; */
+  margin-top: 17px;
   }
+
+    .btn {
+        position: relative;
+        margin-top: 90px;
+        background: white;
+        color: black;
+        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        height: 60px;
+        font-size: 20px;
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        font-family:"Acme", Arial, sans-serif;
+        z-index: 2; /* 放在上面 */
+    }
+    .btn_ {
+        position: absolute;
+        background-color: #D8D5DA;
+        top: 482px;
+        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        height: 60px;    
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;   
+        position: absolute;
+        z-index: 1; /* 放在下面 */
+    }
   .logout {
     color: white;
     text-align:center;
-    margin-top:40px;
+    margin-top:80px;
+    font-size: 16px;
     opacity:0.8;
     cursor:pointer;
+    letter-spacing: -1%;
+    font-family: "Inter", Arial, sans-serif;
   }
 </style>
 </head>
 <body>
-    <div class="bg-container">
-  <!-- 顶部栏 -->
-  <div class="topbar">
-    <img src="sc/Avatar.png"  width="50"  class="circle">
-    <div class="circle"> <span id="todayCount">0</span></div>
-    <div class="circle"><span id="totalCount">0</span></div>
-  </div>
+    <div class="wrapper">
+        <img src="./sc/backg.png" class="bg" />   
 
-  <!-- 点击按钮，直接用 onclick -->
-   <img src="sc/Mask group.png" class="pic" width="40%" style="cursor: pointer;border-radius: 10px;"  onclick="clickButton()">
-  <button class="btn" onclick="clickButton()">Tap</button>
-  <div class ="logout" onclick="logOut()">Log out</div>
-</div>
+        <div class="content">
+            <!-- 顶部栏 -->
+             <div class="top">
+              <img src="sc/Avatar.png" class="propic">
+              <span id="todayCount" class="todayc">0</span>
+              <span class="totalc">
+                <span id="totalCount" class="totalc_c">0</span>
+                <span class="totalc_p">
+                  <img src="./sc/coins 1.png" style="width: 24px; height: 24px; border-radius: 50%;">
+                </span>
+              </span>
+             </div>
+             <h1>Tap to score big and<br>win prizes</h1>
+            <img src="sc/Mask group.png" class="pic" onclick="clickButton()">
+            <button class="btn" onclick="clickButton()">Tap</button>
+            <div class="btn_" onclick="clickButton()"></div>
+            <div class ="logout" onclick="logOut()">Log out</div>
+        </div>
+
+  </div>
   <script>
     // 获取登录后的 userid
     const userid = localStorage.getItem("userid");
     if (!userid) {
       alert("请先登录");
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     }
 
     // 更新计数
@@ -129,7 +222,7 @@ body {
 
         if (result.success) {
           localStorage.removeItem("userid");
-          window.location.href = "login.html";
+          window.location.href = "index.html";
         } else {
           alert(result.message);
         }
