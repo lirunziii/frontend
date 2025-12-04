@@ -4,7 +4,7 @@
 <meta charset="UTF-8"> <!-- 设置网页编码为 UTF-8 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 手机适配 -->
 <title>Document</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter&family=ABeeZee&family=Acme&family=ADLaM+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=ABeeZee&family=Acme&family=ADLaM+Display:wght@400&display=swap" rel="stylesheet">
 <style>
     body {
         margin: 0; 
@@ -97,6 +97,9 @@
         transition: bottom 0.35s ease-out;
         box-sizing: border-box;
         z-index: 10;
+    display: flex;              /* 启用 flex 布局 */
+    flex-direction: column;     /* 垂直排列子元素 */
+    align-items: center;        /* 水平居中子元素 */
     }
 
     /* 弹窗显示 */
@@ -105,16 +108,18 @@
     }
 
     .popup h2 {
-        margin: 0 0 15px 0;
+        margin-top: 5px;
         font-size: 32px;
         font-weight: 700;
         line-height: 1.3;
+        letter-spacing: -2%;
+        color: #1A1C1E;
         font-family: "Inter", Arial, sans-serif;
     }
 
     .popup input,
     .popup .btn {
-        width: 279px;
+        width: 240px;
         box-sizing: border-box;
         display: block;
         border-radius: 10px;
@@ -154,7 +159,7 @@
     <!-- 弹窗 -->
     <div class="popup" id="loginPopup">
         <h2>Log in to your account</h2>
-        <input id="userid" placeholder="User ID" style="margin-top: 6vh;">
+        <input id="userid" placeholder="User ID" style="margin-top: 10px;">
         <input id="pwd" type="password" placeholder="Password">
         <button class="btn" onclick="login()" style="margin-top: 8vh;">Log In</button>
     </div>
