@@ -116,13 +116,15 @@
   /* margin: 0 auto; */
   margin-top: 17px;
   }
-
     .btn {
+        position: relative;
+    }
+    .btn_ {
         position: relative;
         margin-top: 90px;
         background: white;
         color: black;
-        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        width: 280px; /* 按钮宽度 = content 宽度的一部分 */
         height: 60px;
         font-size: 20px;
         border-radius: 100px;
@@ -131,11 +133,11 @@
         font-family:"Acme", Arial, sans-serif;
         z-index: 2; /* 放在上面 */
     }
-    .btn_ {
+    .btn_s {
         position: absolute;
         background-color: #D8D5DA;
-        top: 482px;
-        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        top: 98px;
+        width: 100%; /* 按钮宽度 = content 宽度的一部分 */
         height: 60px;    
         border-radius: 100px;
         border: none;
@@ -174,8 +176,10 @@
              </div>
              <h1>Tap to score big and<br>win prizes</h1>
             <img src="sc/Mask group.png" class="pic" onclick="clickButton()">
-            <button class="btn" onclick="clickButton()">Tap</button>
-            <div class="btn_" onclick="clickButton()"></div>
+            <div class="btn"  onclick="clickButton()">
+              <button class="btn_">Tap</button>
+              <div class="btn_s"></div>
+            </div>
             <div class ="logout" onclick="logOut()">Log out</div>
         </div>
 

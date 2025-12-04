@@ -53,13 +53,16 @@
         font-size: 16px;
         font-family:"ABeeZee", Arial, sans-serif;
     }
-
     .btn {
+        position: relative;
+    }
+
+    .btn_ {
         position: relative;
         margin-top: 4vh;
         background: white;
         color: black;
-        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        width: 280px; /* 按钮宽度 = content 宽度的一部分 */
         height: 60px;
         font-size: 16px;
         border-radius: 100px;
@@ -68,11 +71,11 @@
         font-family:"Acme", Arial, sans-serif;
         z-index: 2; /* 放在上面 */
     }
-    .btn_ {
+    .btn_s {
         position: absolute;
         background-color: #D8D5DA;
-        top: 619px;
-        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        top: 35px;
+        width: 100%; /* 按钮宽度 = content 宽度的一部分 */
         height: 60px;    
         border-radius: 100px;
         border: none;
@@ -151,8 +154,11 @@
         <div class="content">
             <h1>Welcome to Practice Mode!</h1>
             <p>Tap to Score High and Win Rewards!</p>
-            <button class="btn" id="openLogin">GET STARTED</button>
-            <div class="btn_" ></div>
+            <div class="btn" id="openLogin">
+                <button class="btn_" >GET STARTED</button>
+                <div class="btn_s" ></div>
+            </div>
+
         </div>
     </div>
 
@@ -161,7 +167,7 @@
         <h2>Log in to your account</h2>
         <input id="userid" placeholder="User ID" style="margin-top: 10px;">
         <input id="pwd" type="password" placeholder="Password">
-        <button class="btn" onclick="login()" style="margin-top: 8vh;">Log In</button>
+        <button class="btn_" onclick="login()" style="margin-top: 8vh;">Log In</button>
     </div>
 
     <script>
