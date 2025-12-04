@@ -55,6 +55,7 @@
     }
 
     .btn {
+        position: relative;
         margin-top: 4vh;
         background: white;
         color: black;
@@ -65,12 +66,25 @@
         border: none;
         cursor: pointer;
         font-family:"Acme", Arial, sans-serif;
+        z-index: 2; /* 放在上面 */
+    }
+    .btn_ {
+        position: absolute;
+        background-color: #D8D5DA;
+        top: 619px;
+        width: 90%; /* 按钮宽度 = content 宽度的一部分 */
+        height: 60px;    
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;   
+        position: absolute;
+        z-index: 1; /* 放在下面 */
     }
 
     /* 弹窗 */
     .popup {
         position: fixed;
-        left: 50%;
+        left: 50%; 
         bottom: -100%; /* 默认隐藏在屏幕下方 */
         transform: translateX(-50%);
         height: 60vh;
@@ -133,6 +147,7 @@
             <h1>Welcome to Practice Mode!</h1>
             <p>Tap to Score High and Win Rewards!</p>
             <button class="btn" id="openLogin">GET STARTED</button>
+            <div class="btn_" ></div>
         </div>
     </div>
 
