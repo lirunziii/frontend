@@ -1,0 +1,20 @@
+# Node
+node_modules/
+
+# Capacitor
+www/
+dist/
+
+# Android
+android/app/build/
+android/build/
+*.apk
+*.keystore
+*.jks
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.gradle/
